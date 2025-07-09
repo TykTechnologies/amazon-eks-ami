@@ -562,3 +562,6 @@ sudo cp $WORKING_DIR/log-collector-script/eks-log-collector.sh /etc/eks/log-coll
 sudo sed -i \
   's/ - package-update-upgrade-install/# Removed so that nodes do not have version skew based on when the node was started.\n# - package-update-upgrade-install/' \
   /etc/cloud/cloud.cfg
+# https://github.com/containerd/containerd/issues/8197
+# this was fixed in 1.2.x of libcni but containerd < 2.x are using libcni 1.1.x
+sudo systemctl enable cni-cache-reset
